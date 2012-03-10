@@ -18,7 +18,7 @@ class alWidgetFormJQueryAddressPicker extends sfWidgetFormInput
   {
     $map_input = '
     <div id="input">
-      <label>'.__($name).': </lable> <input id="'.$this->generateId($name) .'" name="'.$name.'"> <br/>
+      <label>'.__($name).': </label> <input id="'.$this->generateId($name) .'" name="'.$name.'"> <br/>
     </div>
     <div id="extra-info">
       <label>'.__('Locality').': </label> <input id="locality" disabled=disabled> <br/>
