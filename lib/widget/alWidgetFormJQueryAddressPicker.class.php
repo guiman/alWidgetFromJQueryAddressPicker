@@ -64,11 +64,10 @@ class alWidgetFormJQueryAddressPicker extends sfWidgetFormInput
    */
   public function getJavaScripts()
   {
-    $javascripts = array("http://maps.google.com/maps/api/js?sensor=false");
-
-    //$javascripts[] =  "/js/jquery-1.4.4.min.js";
-    $javascripts[] =  "/js/jquery-ui-1.8.7.min.js";
-    $javascripts[] =  "/js/jquery.ui.addresspicker.js";
+    $javascripts = array("http://maps.google.com/maps/api/js?sensor=false",
+                         "/js/jquery-1.4.4.min.js",
+                         "/js/jquery-ui-1.8.7.min.js",
+                         "/js/jquery.ui.addresspicker.js");
 
     return array_merge($javascripts,parent::getJavaScripts());
   }
