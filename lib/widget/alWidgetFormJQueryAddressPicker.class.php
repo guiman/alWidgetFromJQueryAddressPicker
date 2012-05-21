@@ -11,25 +11,38 @@ class alWidgetFormJQueryAddressPicker extends sfWidgetFormInput
 
   protected function configure($options = array(), $attributes = array()) {
     parent::configure($options, $attributes);
-    $this->addOption('add_map', false);
-  }
 
-  public function render($name, $value = null, $attributes = array(), $errors = array())
-  {
-    $map_input = '
+    $this->addOption('legend_text','You can drag and drop the marker to the correct location');
+    $this->addOption('locality','Locality');
+    $this->addOption('country','Country');
+    $this->addOption('add_map', false);
+
+    $this->addOption('template',  <<<EOF
     <div id="input">
-      <label>'.__($name).': </lable> <input id="'.$this->generateId($name) .'" name="'.$name.'"> <br/>
+      <label>'.__(%name%).': </lable> <input id="'.%id% .'" name="'.%name%.'"> <br/>
     </div>
     <div id="extra-info">
-      <label>'.__('Locality').': </label> <input id="locality" disabled=disabled> <br/>
-      <label>'.__('Country').':  </label> <input id="country" disabled=disabled> <br/>
+      <label>%locality%: </label> <input id="locality" disabled=disabled> <br/>
+      <label>%country%:  </label> <input id="country" disabled=disabled> <br/>
       <label>Lat:      </label> <input id="lat" disabled=disabled> <br/>
       <label>Lng:      </label> <input id="lng" disabled=disabled> <br/>
     </div>
     <div id="map"></div>
-    <div id="legend">'.__('You can drag and drop the marker to the correct location').'</div>
-    ';
+    <div id="legend">%legend%</div>
+EOF
+    );
+  }
 
+  public function render($name, $value = null, $attributes = array(), $errors = array())
+  {
+    $map_input = str_replace(array('%name%','id','%locality%','%country%','%legend%'),
+                             array($name,
+                                   $this->generateId($name),
+                                   $this->getOption('locality'),
+                                   $this->getOption('country'),
+                                   $this->getOption('legend')),
+                             $this->getOption('template')
+                             );
     $return = ($this->getOption("add_map")? $map_input : parent::render($name,$value,$attributes,$errors));
 
     return $return . $this->renderJavascript($this->generateId($name));
