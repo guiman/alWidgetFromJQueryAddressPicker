@@ -19,7 +19,11 @@ class alWidgetFormJQueryAddressPicker extends sfWidgetFormInput
 
     $this->addOption('template',  <<<EOF
     <div id="input">
+<<<<<<< HEAD
       <label>'.__(%name%).': </lable> <input id="'.%id% .'" name="'.%name%.'"> <br/>
+=======
+      <label>'.__($name).': </label> <input id="'.$this->generateId($name) .'" name="'.$name.'"> <br/>
+>>>>>>> 8df6577481b04bc76c67ec0c06112f764c3dc453
     </div>
     <div id="extra-info">
       <label>%locality%: </label> <input id="locality" disabled=disabled> <br/>
